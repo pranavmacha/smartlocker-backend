@@ -1,12 +1,18 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from app.api.routes import users, sessions
+from app.db.session import engine
+from app.models import user, locker_session  # ✅ import models for table creation
 
 app = FastAPI(
     title="Smart Locker API",
     description="Backend for Smart Charging Locker",
     version="1.0.0"
 )
+
+# ✅ Auto-create all database tables on startup
+user.Base.metadata.create_all(bind=engine)
+locker_session.Base.metadata.create_all(bind=engine)
 
 # CORS
 app.add_middleware(
