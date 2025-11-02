@@ -2,7 +2,7 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from app.api.routes import users, sessions
 from app.db.session import engine
-from app.models import user, locker_session  # ✅ import models for table creation
+ # ✅ import models for table creation
 
 app = FastAPI(
     title="Smart Locker API",
